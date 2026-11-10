@@ -342,9 +342,8 @@ MIT License — feel free to use for educational purposes.
 
 ## 👨💻 Author
 
-**Rajiv N Thakker**
-- GitHub: [@Rajiv6165](https://github.com/Rajiv6165)
-- Project: MCA Final Year — Cold Chain Logistics
+**Sagi Siddhartha**
+
 
 ---
 
