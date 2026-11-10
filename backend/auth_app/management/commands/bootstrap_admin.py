@@ -10,9 +10,9 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         admin_email = os.getenv("ADMIN_EMAIL")
         admin_password = os.getenv("ADMIN_PASSWORD")
-        if not admin_email or not admin_password or len(admin_password) < 16:
+        if not admin_email or not admin_password or len(admin_password) < 8:
             raise CommandError(
-                "Set ADMIN_EMAIL and an ADMIN_PASSWORD of at least 16 characters"
+                "Set ADMIN_EMAIL and an ADMIN_PASSWORD of at least 8 characters"
             )
 
         User = get_user_model()
