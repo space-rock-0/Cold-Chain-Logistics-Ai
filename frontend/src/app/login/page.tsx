@@ -145,19 +145,15 @@ export default function LoginPage() {
 
           {/* Demo credentials hint */}
           <div className="mt-6 rounded-lg border border-white/5 bg-white/3 p-4">
-            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-500">Demo Credentials</p>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-500">Configured Credentials</p>
             <div className="space-y-1 font-mono text-xs">
               <p>
                 <span className="text-slate-500">Admin: </span>
-                <span className="text-cyan-400">admin@coldchain.com</span>
-                <span className="text-slate-600"> / </span>
-                <span className="text-cyan-400">admin123</span>
+                <span className="text-slate-400">Use the credentials configured by the deployment owner</span>
               </p>
               <p>
                 <span className="text-slate-500">Viewer: </span>
-                <span className="text-slate-400">viewer@coldchain.com</span>
-                <span className="text-slate-600"> / </span>
-                <span className="text-slate-400">viewer123</span>
+                <span className="text-slate-400">Viewer access is optional</span>
               </p>
             </div>
           </div>
