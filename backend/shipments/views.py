@@ -1,10 +1,24 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Shipment
+from django.core.management import call_command
+import threading
+
+
+_seed_lock = threading.Lock()
+
+
+def ensure_sample_shipments():
+    if Shipment.objects.exists():
+        return
+    with _seed_lock:
+        if not Shipment.objects.exists():
+            call_command("seed_shipments", verbosity=0)
 
 
 class ShipmentListView(APIView):
     def get(self, request):
+        ensure_sample_shipments()
         shipments = Shipment.objects.all().order_by('-created_at')
         data = [{
             "id": str(s.id),
@@ -29,6 +43,7 @@ class ShipmentListView(APIView):
 
 class ShipmentStatsView(APIView):
     def get(self, request):
+        ensure_sample_shipments()
         return Response({
             "total": Shipment.objects.count(),
             "pending": Shipment.objects.filter(status="PENDING").count(),

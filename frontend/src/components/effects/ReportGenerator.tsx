@@ -158,7 +158,7 @@ export default function ReportGenerator({
       doc.setTextColor(100, 116, 139);
       doc.setFontSize(7);
       doc.text(
-        "Cold Chain AI v2.0 — MCA Final Year Project — Galgotias University",
+        "Cold Chain AI v2.0 — MCA Final Year Project — VIT Vellore — Sagi Siddhartha",
         pageWidth / 2,
         288,
         { align: "center" }

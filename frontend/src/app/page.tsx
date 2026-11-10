@@ -448,7 +448,7 @@ export default function LandingPage() {
               </div>
               <div className="flex justify-between items-start gap-4 py-1.5 border-b border-white/5">
                 <span className="text-slate-500 uppercase font-semibold text-[10px]">Developer</span>
-                <span className="text-slate-200 text-right font-bold text-sky-400">Rajiv Kumar</span>
+                <span className="text-slate-200 text-right font-bold text-sky-400">Sagi Siddhartha</span>
               </div>
               <div className="flex justify-between items-start gap-4 py-1.5">
                 <span className="text-slate-500 uppercase font-semibold text-[10px]">Arch Key</span>
@@ -609,7 +609,7 @@ export default function LandingPage() {
           VIT Vellore | Built with Next.js, Django, Flask, Gemini AI, Llama 3.3, Ethereum
         </p>
         <p className="text-slate-600">
-          &copy; 2026 Rajiv Kumar. All rights reserved.
+          &copy; 2026 Sagi Siddhartha. All rights reserved.
         </p>
       </footer>
 

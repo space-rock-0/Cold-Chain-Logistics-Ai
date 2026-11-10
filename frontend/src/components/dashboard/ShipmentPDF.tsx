@@ -198,7 +198,7 @@ export function generateShipmentPDF(shipment: ShipmentPDFProps['shipment']) {
   doc.setTextColor(100, 116, 139)
   doc.setFontSize(7)
   doc.text(
-    `Generated: ${new Date().toLocaleString()} | Cold Chain AI v2.0 | MCA Final Year Project — Galgotias University`,
+    `Generated: ${new Date().toLocaleString()} | Cold Chain AI v2.0 | MCA Final Year Project — VIT Vellore | Sagi Siddhartha`,
     pageWidth/2, 281, { align: 'center' }
   )
   doc.text(
