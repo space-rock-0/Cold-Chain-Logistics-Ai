@@ -6,7 +6,7 @@ services:
     plan: free
     region: singapore
     buildCommand: pip install -r requirements-production.txt
-    startCommand: cd backend && python manage.py migrate --noinput && python manage.py bootstrap_admin && daphne -b 0.0.0.0 -p $PORT core.asgi:application
+    startCommand: cd backend && python manage.py migrate --noinput && python manage.py bootstrap_admin && python manage.py seed_shipments && exec daphne -b 0.0.0.0 -p $PORT core.asgi:application
     healthCheckPath: /api/health/
     envVars:
       - key: PYTHON_VERSION

@@ -38,6 +38,9 @@ class Command(BaseCommand):
     help = 'Seed 85 realistic shipments'
 
     def handle(self, *args, **kwargs):
+        if Shipment.objects.exists():
+            self.stdout.write('Shipments already exist; skipping sample seed')
+            return
         Shipment.objects.all().delete()
         shipments = []
 

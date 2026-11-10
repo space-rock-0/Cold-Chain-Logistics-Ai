@@ -2,8 +2,8 @@ Deployment status: prepared locally; no cloud deployment has been verified.
 
 The Render Blueprint defines three free services: Next.js, Django/Channels, and Flask prediction endpoints. Use external persistent PostgreSQL (Neon free tier) rather than an expiring Render free database. Render free service hours are shared across the workspace; three services cannot all run continuously within a single 750-hour allowance. Services sleep and may exhaust free quotas. No paid resources are declared.
 
-The API service must use this exact start command so production accounts are bootstrapped before Daphne starts:
-`cd backend && python manage.py migrate --noinput && python manage.py bootstrap_admin && exec daphne -b 0.0.0.0 -p $PORT core.asgi:application`
+The API service must use this exact start command so production accounts and sample data are ready before Daphne starts:
+`cd backend && python manage.py migrate --noinput && python manage.py bootstrap_admin && python manage.py seed_shipments && exec daphne -b 0.0.0.0 -p $PORT core.asgi:application`
 
 Required secrets at deployment:
 - Backend: DATABASE_URL (TLS), ADMIN_EMAIL, ADMIN_PASSWORD (8+ characters), optional VIEWER_EMAIL and VIEWER_PASSWORD (8+ characters), and GROQ_API_KEY. If viewer variables are omitted, the demo viewer is created as `viewer@coldchain.com` / `viewer123`.
