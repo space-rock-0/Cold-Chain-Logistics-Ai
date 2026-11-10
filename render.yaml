@@ -1,0 +1,61 @@
+# Three free web services. Database must be an external persistent Postgres service.
+services:
+  - type: web
+    name: coldchain-api
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements-production.txt
+    startCommand: cd backend && python manage.py migrate --noinput && python manage.py bootstrap_admin && daphne -b 0.0.0.0 -p $PORT core.asgi:application
+    healthCheckPath: /api/health/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false
+      - key: IN_MEMORY_CHANNELS
+        value: 'true'
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b
+  - type: web
+    name: coldchain-predictions
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install 'Flask>=3.1,<4' 'flask-cors>=6,<7' 'gunicorn>=23,<24'
+    startCommand: gunicorn --chdir ml_service --bind 0.0.0.0:$PORT --workers 1 --threads 2 app:app
+    healthCheckPath: /ml/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+  - type: web
+    name: coldchain-web
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci --prefix frontend && npm run build --prefix frontend
+    startCommand: npm run start --prefix frontend -- --hostname 0.0.0.0 --port $PORT
+    healthCheckPath: /login
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: BACKEND_URL
+        sync: false
+      - key: ML_SERVICE_URL
+        sync: false
+      - key: NEXT_PUBLIC_WS_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b

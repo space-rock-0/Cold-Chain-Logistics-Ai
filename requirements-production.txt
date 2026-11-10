@@ -1,0 +1,5 @@
+-r requirements-local.txt
+dj-database-url>=2.3,<4
+psycopg2-binary>=2.9.10,<3
+channels-redis>=4.2,<5
+gunicorn>=23,<24
