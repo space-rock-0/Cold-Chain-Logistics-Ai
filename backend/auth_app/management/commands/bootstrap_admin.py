@@ -28,12 +28,8 @@ class Command(BaseCommand):
             admin.save(update_fields=["password"])
             self.stdout.write("Admin created")
 
-        viewer_email = os.getenv("VIEWER_EMAIL")
-        viewer_password = os.getenv("VIEWER_PASSWORD")
-        if not viewer_email and not viewer_password:
-            return
-        if not viewer_email or not viewer_password:
-            raise CommandError("Set both VIEWER_EMAIL and VIEWER_PASSWORD, or neither")
+        viewer_email = os.getenv("VIEWER_EMAIL", "viewer@coldchain.com")
+        viewer_password = os.getenv("VIEWER_PASSWORD", "viewer123")
         if len(viewer_password) < 8:
             raise CommandError("VIEWER_PASSWORD must be at least 8 characters")
         viewer = User.objects.filter(email__iexact=viewer_email).first()
