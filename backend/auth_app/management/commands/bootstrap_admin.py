@@ -19,12 +19,13 @@ class Command(BaseCommand):
         if User.objects.filter(email__iexact=admin_email).exists():
             self.stdout.write("Admin already exists")
         else:
-            User.objects.create_superuser(
+            admin = User.objects.create_superuser(
                 username=admin_email,
                 email=admin_email,
-                password=admin_password,
                 role="ADMIN",
             )
+            admin.set_password(admin_password)
+            admin.save(update_fields=["password"])
             self.stdout.write("Admin created")
 
         viewer_email = os.getenv("VIEWER_EMAIL")
@@ -35,14 +36,19 @@ class Command(BaseCommand):
             raise CommandError("Set both VIEWER_EMAIL and VIEWER_PASSWORD, or neither")
         if len(viewer_password) < 8:
             raise CommandError("VIEWER_PASSWORD must be at least 8 characters")
-        if User.objects.filter(email__iexact=viewer_email).exists():
-            self.stdout.write("Viewer already exists")
+        viewer = User.objects.filter(email__iexact=viewer_email).first()
+        if viewer:
+            viewer.set_password(viewer_password)
+            viewer.role = "VIEWER"
+            viewer.save(update_fields=["password", "role"])
+            self.stdout.write("Viewer password synchronized")
             return
 
-        User.objects.create_user(
+        viewer = User.objects.create_user(
             username=viewer_email,
             email=viewer_email,
-            password=viewer_password,
             role="VIEWER",
         )
+        viewer.set_password(viewer_password)
+        viewer.save(update_fields=["password"])
         self.stdout.write("Viewer created")
