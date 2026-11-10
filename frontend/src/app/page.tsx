@@ -333,7 +333,7 @@ export default function LandingPage() {
             Everything you need to monitor cold chain logistics
           </h3>
           <p className="text-slate-400 text-sm font-mono mt-2">
-            Built for MCA Final Year Project — Galgotias University
+            Built as an academic project at VIT Vellore
           </p>
         </div>
 
@@ -436,7 +436,7 @@ export default function LandingPage() {
               </div>
               <div className="flex justify-between items-start gap-4 py-1.5 border-b border-white/5">
                 <span className="text-slate-500 uppercase font-semibold text-[10px]">Institution</span>
-                <span className="text-slate-200 text-right">Galgotias University</span>
+                <span className="text-slate-200 text-right">VIT Vellore</span>
               </div>
               <div className="flex justify-between items-start gap-4 py-1.5 border-b border-white/5">
                 <span className="text-slate-500 uppercase font-semibold text-[10px]">Program</span>
@@ -606,7 +606,7 @@ export default function LandingPage() {
           ❄️ Cold Chain AI v2.0 — MCA Final Year Project
         </p>
         <p className="max-w-2xl mx-auto leading-relaxed">
-          Galgotias University | Built with Next.js, Django, Flask, Gemini AI, Llama 3.3, Ethereum
+          VIT Vellore | Built with Next.js, Django, Flask, Gemini AI, Llama 3.3, Ethereum
         </p>
         <p className="text-slate-600">
           &copy; 2026 Rajiv Kumar. All rights reserved.
